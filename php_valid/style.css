@@ -1,0 +1,35 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+body{
+    text-align:center;
+    font:11px "Lucida Grande",Arial,sans-serif;
+}
+#content{
+    width:300px;
+    text-align:left;
+    margin:10px;
+}
+.formitem{
+    width:100%;
+    padding: 6px;
+    font:11px "Lucida Grande",Arial,sans-serif;
+}
+h2{
+    font:18px "Helvetica",Arial,sans-serif;
+}
+.box{
+    width:100%;
+    padding:10px 0px 10px 5px;
+    margin-bottom: 8px;
+    font-weight:bold;
+}
+.green{
+    background-color:#95ca78;
+    border-bottom:solid 1px #8AA000;
+}
+.red{
+    background-color:#FDCBCA;
+    border-bottom:solid 1px #E8514A;
+}
