@@ -5,7 +5,7 @@
 <body>
 <table id="customer_id">
 <tr>
-	<th><label>‚¨–¼‘O</label></th>
+	<th><label>‚¨‚È‚Ü‚¦</label></th>
 	<td><input id="cus_name" type="text" name="cust_name"/></td>>
 </tr>
 <tr>
