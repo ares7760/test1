@@ -1,0 +1,165 @@
+<html>
+<head>
+</head>
+<body>
+<form method=POST action=formdata.php>
+                  
+  <table width="640" border=0 align="center">
+    <tr> 
+      <td align=right><b>First Name</b></td>
+      <td><input type=text name=FName size=25></td>
+      <td><div align="right"><b>Telephone</b></div></td>
+      <td><input type=text name=Tel size=25></td>
+    </tr>
+    <tr> 
+      <td align=right><b>Last Name</b></td>
+      <td><input type=text name=LName size=25></td>
+      <td><div align="right"><b>Fax</b></div></td>
+      <td><input type=text name=Fax size=25></td>
+    </tr>
+    <tr> 
+      <td align=right><b>Title</b></td>
+      <td><input type=text name=Title size=25></td>
+      <td><div align="right"><b>Email</b></div></td>
+      <td><input type=text name=Email size=50></td>
+    </tr>
+    <tr> 
+      <td align=right><b>Company</b></td>
+      <td><input type=text name=Comp size=25></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right><b>Address</b></td>
+      <td><input type=text name=Addr size=25></td>
+      <td><div align="right"><b>Estimated Annual Volume</b></div></td>
+      <td><input type=text name=EAV size=25></td>
+    </tr>
+    <tr> 
+      <td align=right><b>City</b></td>
+      <td><input type=text name=City size=25></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right><b>State/Province</b></td>
+      <td><input type=text name=SProv size=25></td>
+      <td><div align="right"><b>Application</b></div></td>
+      <td><input type=text name=Appl size=25></td>
+    </tr>
+    <tr> 
+      <td align=right><b>Country</b></td>
+      <td><input type=text name=Ctry size=25></td>
+      <td><div align="right"><b>Type of System</b></div></td>
+      <td><input type=text name=Syst size=25></td>
+    </tr>
+    <tr> 
+      <td align=right><b>Zip/Postal Code</b></td>
+      <td><input type=text name=ZPC size=25></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td><div align="right"><strong><font color="#FFFF00" face="Arial, Helvetica, sans-serif">COIL 
+          DESIGN</font></strong></div></td>
+      <td><font color="#FFFF00" face="Arial, Helvetica, sans-serif"><strong>PARAMETERS</strong></font></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right><b>Primary Resistance (ohms)</b></td>
+      <td><input type=text name=Pres size=25></td>
+      <td><div align="right"><b>Primary Inductance (mH)</b></div></td>
+      <td><input type=text name=Pind size=25></td>
+    </tr>
+    <tr> 
+      <td align=right><b>Secondary Resistance (ohms)</b></td>
+      <td><input type=text name=Sres size=25></td>
+      <td><div align="right"><b>Secondary Inductance (H)</b></div></td>
+      <td><input type=text name=Sind size=25></td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right><b>Peak Operating Current (Amps)</b></td>
+      <td><input type=text name=POC size=25></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right><b>Output Energy (mJ)</b></td>
+      <td><input type=text name=Egy size=25></td>
+      <td><div align="right"><b>Output Voltage (kV)</b></div></td>
+      <td><input type=text name=Volt size=25></td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right><b># HV Towers per Coil</b></td>
+      <td><input type=text name=TPC size=25></td>
+      <td><div align="right"><b># of Coils per Package</b></div></td>
+      <td><input type=text name=CPP size=25></td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align=right>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <th colspan=4><b>Please enter any additional information here:</b></th>
+    </tr>
+    <tr> 
+      <th colspan=4><textarea name=Mess cols=50 rows=10 id="Message"></textarea></th>
+    </tr>
+  </table>
+  </dl>
+  <div align="center">
+    <p>
+      <input type=hidden name=BodyTag value="&lt;body  bgcolor=&quot;#484589&quot; text=&quot;#FFFFFF&quot; link=&quot;#FFFF00&quot; alink=&quot;#FFFFFF&quot; vlink=&quot;#FF7F00&quot;&gt;">
+      <input type=hidden name=FA value=SendMail>
+    </p>
+    <p><font color="#FFFF00" face="Arial, Helvetica, sans-serif"><strong>PLEASE MAKE SURE ALL 
+      INFORMATION
+      IS CORRECT BEFORE SUBMITTING</strong></font></p>
+    <p> 
+      <input type=submit value="Submit Form">
+    </p>
+  </div>
+</form>
+</body>
+</html>
+
+
