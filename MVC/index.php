@@ -54,7 +54,7 @@ if(isset($_POST['submitted'])&&($_POST['submitted']==1)){
 
 
     if (empty($errors)){
-        require_once("test2.php");
+        require_once("done.php");
         exit();
     }
 }
@@ -110,10 +110,16 @@ try {
   $conn = null;        // Disconnect
 }
 catch(PDOException $e) {
+ echo $sql . "<br />";
   echo $e->getMessage();
 }
 
 
 require("./views/index.html.php");
+require("Model.html.php");
+$dbconnect = new Model('localhost','testmail','root', 'root');
+$result = $dbconnect->getMail(5);
+echo "hello world";
+echo $result;
 
 ?>

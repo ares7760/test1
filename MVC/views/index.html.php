@@ -60,5 +60,12 @@
         </td></tr>
 </table>
 </form>
+<?php
+require("Model.html.php");
+$dbconnect = new Model('localhost','testmail','root', 'root');
+$result = $dbconnect->getMail(5);
+echo "hello world";
+echo $result;
+?>
 </body>
 </html>
