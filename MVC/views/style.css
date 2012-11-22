@@ -1,0 +1,27 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+
+body{
+    font-family: "ƒƒCƒŠƒI","‚l‚r ‚oƒSƒVƒbƒN","‚l‚rƒSƒVƒbƒN",Osaka,"ƒqƒ‰ƒMƒmŠpƒS Pro W3","•½¬ŠpƒSƒVƒbƒN","Verdana","Arial","Helvetica",sans-serif;
+    font-size: 10pt;
+    font-weight: normal;
+    color: black;
+}
+
+.green{
+    width:100%;
+    background-color:#95ca78;
+    border-bottom:solid 1px #8AA000;
+    padding:10px 0px 10px 5px;
+    margin-bottom: 8px;
+    font-weight:bold;
+    text-align:left;
+}
+
+.red{
+    color:#E8514A;
+    font-weight:bold;
+}
+
