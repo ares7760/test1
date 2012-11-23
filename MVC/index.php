@@ -1,11 +1,12 @@
 <?php
 
-require("Model.php");
+require_once("Model.php");
 
 
-$dbconnect = new Model('localhost','testmail','root', 'root');
+$dbconnect = new Model('localhost','mailform','root', 'root');
 $cityArr = $dbconnect->getAllCity();
 
+$checkedarr = array();
 
 function createCityChecks($cities, $checkedarr) {
     $html = array();
@@ -14,11 +15,11 @@ function createCityChecks($cities, $checkedarr) {
         $i++;
         $rtn = ($i == 5) ? "<br />" : "";
         if ($key !== null)
-            $html[] = "<input id='city_{$val['cityID']}' name='city[{$val['cityID']}]' type='checkbox' val='{$val['cityID']}'";
-        if (in_array($val['cityID'], $checkedarr)) {
+            $html[] = "<input id='city_{$val['city_id']}' name='city[{$val['city_id']}]' type='checkbox' val='{$val['city_id']}'";
+        if (in_array($val['city_id'], $checkedarr)) {
            $html[] =" checked ";
         }
-            $html[] ="/><label for='city_{$val['cityID']}'>{$val['cityName']}</label>{$rtn}";
+            $html[] ="/><label for='city_{$val['city_id']}'>{$val['city_name']}</label>{$rtn}";
     }
     return implode("\n", $html);
 }
@@ -27,7 +28,7 @@ function createCityChecks($cities, $checkedarr) {
 if(isset($_POST['submit'])){
     $required = array("cust_name","cust_add1","cust_add2","city","comment");
     $errors = array();
-
+    $temp2 = array();
 
     foreach ($_POST as $field => $value){
         $temp = is_array($value) ? $value : trim($value);
@@ -52,12 +53,11 @@ if(isset($_POST['submit'])){
         array_push($errors, "error_mail");
     }
     
-     $checkedarr = array();
-     if ($_POST['city']) {
+    if (isset($_POST['city'])) {
          foreach ($_POST['city'] as $key => $val) {
              $checkedarr[] = $key;
          }
-     }
+    }
 
     if(count($checkedarr) == 0) array_push($errors, "no_city");
 
@@ -68,7 +68,7 @@ if(isset($_POST['submit'])){
     }
 }
 
-
+$dbconnect->closeConnection();
 require("./views/index.html.php");
 
 ?>

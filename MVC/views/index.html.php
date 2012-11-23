@@ -1,6 +1,12 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
+<style>
+.red{
+    color:#E8514A;
+    font-weight:bold;
+}
+</style>
 </head>
 <body>
 <form action="" method="post" id="inquiry_form">
