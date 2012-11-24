@@ -18,3 +18,19 @@ function page_not_found() {
 function is_post() {
     return isset($_POST);
 }
+
+function createCityChecks($cities, $checkedarr) {
+    $html = array();
+    $i = 0;
+    foreach ($cities as $key => $val) {
+        $i++;
+        $rtn = ($i == 5) ? "<br />" : "";
+        if ($key !== null)
+            $html[] = "<input id='city_{$val['city_id']}' name='city[{$val['city_id']}]' type='checkbox' val='{$val['city_id']}'";
+        if (in_array($val['city_id'], $checkedarr)) {
+           $html[] =" checked ";
+        }
+            $html[] ="/><label for='city_{$val['city_id']}'>{$val['city_name']}</label>{$rtn}";
+    }
+    return implode("\n", $html);
+}
