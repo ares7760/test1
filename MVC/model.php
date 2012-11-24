@@ -84,10 +84,10 @@ class Model{
     }
 
     private function saveMailCity($mailId, $cityId) {
-        $sql = "insert into mail_city(mail_id,city_id) values(:lastmailid,:t)";
+        $sql = "insert into mail_city(mail_id,city_id) values(:mailId, :cityId)";
         $sqlprep = $this->conn->prepare($sql);
-        $ar_val = array('lastmailid'=>$mailId,'t'=>$cityId);
-        $sqlprep->execute($ar_val );
+        $ar_val = array('mailId' => $mailId, 'cityId' => $cityId);
+        $sqlprep->execute($ar_val);
     }
 
     function saveData($custName,$custAdd,$comment,$cityArr,$date){
@@ -108,18 +108,18 @@ class Model{
 //            var_dump($this->conn);
             if ($count != 0)
             {
-                foreach($cityArr as $c)
+                foreach($cityArr as $city)
                 {
-                    $sql = "select city_id from cities where city_id='$c'";
+                    $sql = "select city_id from cities where city_id='$city'";
                     $statement= $this->conn->query($sql);
                     $statement->execute();
                     $statement->setFetchMode(PDO::FETCH_ASSOC);
                     while($row = $statement->fetch())
                     {
-                        $t = $row['city_id'];
+                        $cityId = $row['city_id'];
 //                        echo $t;
                     }
-                    $this->saveMailCity($lastmailID, $t);
+                    $this->saveMailCity($lastmailID, $cityId);
                 }
             }
             $this->conn->commit();
