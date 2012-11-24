@@ -10,7 +10,7 @@ class Model{
         try
         {
             $this->conn =new PDO("mysql:host=$hostdb; dbname=$dbname", $username, $password);
-//            if ($this->debug) echo "successful connection";
+            if ($this->debug) echo "successful connection";
         }
         catch(PDOException $e) 
         {
@@ -51,9 +51,6 @@ class Model{
     function getCity($cityId)
     {
         $sql = "select * from cities where city_id = $cityId";
-//        echo $sql;
-//        var_dump($dbconnect);
-//        var_dump($result);
         $result = $thist->query($sql);
         foreach($result as $row)
             return $row['cityID'];
@@ -71,7 +68,6 @@ class Model{
 
     function getMailByCity($city){
         $city_str = implode(',', $city);
-//        echo $city_str;
         $sql = "select distinct mails.mail_id,mails.cust_name,mails.cust_add, mails.comment, mails.send_date from mails left join mail_city on mails.mail_id = mail_city.mail_id where mail_city.city_id in (".$city_str.")";
         echo $sql;
         $result = $this->query($sql);
@@ -80,7 +76,6 @@ class Model{
         array_push($mailArr, $row);
         }
         return $mailArr;
-//        var_dump($mailArr);
     }
 
     private function saveMailCity($mailId, $cityIds) {
@@ -99,15 +94,11 @@ class Model{
             $this->conn->beginTransaction();
 
             $sql = "insert into mails(cust_name,cust_add,comment,send_date) values(:cust_name,:cust_add,:comment,:send_date)";
- //           echo $sql;
             $sqlprep = $this->conn->prepare($sql);
             $ar_val = array('cust_name'=>$custName, 'cust_add'=>$custAdd,'comment'=>$comment,'send_date'=>$date);
             $sqlprep->execute($ar_val);
 
             $lastmailID = $this->conn->lastInsertId();
-//	    echo $lastmailID;
-//            var_dump($lastmailID);
-//            var_dump($this->conn);
             if (count($cityArr) != 0)
             {
                 $this->saveMailCity($lastmailID, $cityArr);
@@ -126,6 +117,4 @@ class Model{
         $this->conn = null;
     }
 }
-
-?>
 
