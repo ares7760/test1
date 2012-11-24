@@ -83,11 +83,14 @@ class Model{
 //        var_dump($mailArr);
     }
 
-    private function saveMailCity($mailId, $cityId) {
+    private function saveMailCity($mailId, $cityIds) {
         $sql = "insert into mail_city(mail_id,city_id) values(:mailId, :cityId)";
         $sqlprep = $this->conn->prepare($sql);
-        $ar_val = array('mailId' => $mailId, 'cityId' => $cityId);
-        $sqlprep->execute($ar_val);
+        foreach ($cityIds as $cityId) {
+            if (! $this->getCity($cityId)) continue;
+            $ar_val = array('mailId' => $mailId, 'cityId' => $cityId);
+            $sqlprep->execute($ar_val);
+        }
     }
 
     function saveData($custName,$custAdd,$comment,$cityArr,$date){
@@ -108,10 +111,7 @@ class Model{
 //            var_dump($this->conn);
             if ($count != 0)
             {
-                foreach($cityArr as $cityId)
-                {
-                    $this->saveMailCity($lastmailID, $cityId);
-                }
+                $this->saveMailCity($lastmailID, $cityArr);
             }
             $this->conn->commit();
         } catch (Exception $e)
