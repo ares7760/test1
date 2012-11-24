@@ -58,4 +58,3 @@ if(isset($_POST['submit'])){
 
 require("./views/sendmail.html.php");
 
-?>
