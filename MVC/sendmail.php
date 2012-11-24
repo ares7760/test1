@@ -13,11 +13,12 @@ require_once(dirname(__FILE__) . '/libs/aaa.php');
 
 
 //echo "BBCCCCCCCCCCCBBBB";
-$dbconnect = new Model(DB_HOST, DB_NAME, DB_USER, DB_PASS);
 if (! isset($_GET['id'])) {
 //    echo "no mail with id";
     exit();
 }
+
+$dbconnect = new Model(DB_HOST, DB_NAME, DB_USER, DB_PASS);
 $mailArr = $dbconnect->getMailById($_GET['id']);
 
 //var_dump($mailArr);
