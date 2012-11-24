@@ -53,7 +53,7 @@ class Model{
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         array_push($mailArr, $row);
         }
-        return $mailArr;
+        return $mailArr[0];
     }
 
     function getCity($cityId)
