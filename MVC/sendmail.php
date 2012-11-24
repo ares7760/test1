@@ -11,7 +11,7 @@ $mailArr = $dbconnect->getMailById($_GET['id']);
 
 if (! $mailArr) page_not_found();
 
-if(isset($_POST['submit'])){
+if (isset($_POST)) {
     foreach($mailArr as $m=>$val) {
         $to = $val['cust_add'];
     }
