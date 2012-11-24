@@ -14,3 +14,7 @@ function page_not_found() {
     require_once(TEMPLATE_DIR . '404.html.php');
     exit();
 }
+
+function is_post() {
+  return isset($_POST);
+}
