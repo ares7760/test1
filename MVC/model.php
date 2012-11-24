@@ -83,6 +83,13 @@ class Model{
 //        var_dump($mailArr);
     }
 
+    private function saveMailCity($mailId, $cityId) {
+        $sql = "insert into mail_city(mail_id,city_id) values(:lastmailid,:t)";
+        $sqlprep = $this->conn->prepare($sql);
+        $ar_val = array('lastmailid'=>$mailId,'t'=>$cityId);
+        $sqlprep->execute($ar_val );
+    }
+
     function saveData($custName,$custAdd,$comment,$cityArr,$date){
     try {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -112,11 +119,7 @@ class Model{
                         $t = $row['city_id'];
 //                        echo $t;
                     }
-                    $sql = "insert into mail_city(mail_id,city_id) values(:lastmailid,:t)";
-                    $sqlprep = $this->conn->prepare($sql);
-                    $ar_val = array('lastmailid'=>$lastmailID,'t'=>$t);
-                    $sqlprep->execute($ar_val );
-             
+                    $this->saveMailCity($lastmailID, $t);
                 }
             }
             $this->conn->commit();
