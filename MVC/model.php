@@ -43,13 +43,9 @@ class Model{
 
     function getMailById($mailId)
     {
-        $sql = "select mail_id,cust_name,cust_add,comment,send_date from mails where mail_id = ".$mailId;
-        $result = $this->query($sql);
-        $mailArr = array();
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        array_push($mailArr, $row);
-        }
-        return $mailArr[0];
+        $sql = "select mail_id,cust_name,cust_add,comment,send_date from mails where mail_id = :mailId";
+        $result = $this->fetch($sql, array(':mailId' => $mailId));
+        return $result[0];
     }
 
     function getCity($cityId)
