@@ -1,5 +1,6 @@
 <?php
-require_once("Model.php");
+require_once(dirname(__FILE__) . "config.php");
+require_once(dirname(__FILE__) . "Model.php");
 
 $dbconnect = new Model('localhost','mailform','root', 'root');
 $cityArr = $dbconnect->getAllCity();
