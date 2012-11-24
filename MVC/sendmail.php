@@ -12,13 +12,12 @@ $mailArr = $dbconnect->getMailById($_GET['id']);
 if (! $mailArr) page_not_found();
 
 if(isset($_POST['submit'])){
-    $mail = $dbconnect->getMailById($_GET['id']);
-    foreach($mail as $m=>$val)
+    foreach($mailArr as $m=>$val) {
         $to = $val['cust_add'];
-
+    }
     $message = $_POST['reply_content'];
     sendmail(MAIL_SENDER, $to, "Reply mail", $message);
-  }
+}
 
 
 require(TEMPLATE_DIR . "sendmail.html.php");
