@@ -1,5 +1,6 @@
 <?php
 //echo "AAAAAAAAAAAAAAAA";
+require_once('config.php');
 require_once("Model.php");
 
 //echo "BBBBBBBBBBBBBBBBB";
@@ -10,7 +11,7 @@ require_once("Model.php");
 
 
 //echo "BBCCCCCCCCCCCBBBB";
-$dbconnect = new Model('localhost','mailform','root', 'root');
+$dbconnect = new Model(DB_HOST, DB_NAME, DB_USER, DB_PASS);
 if (! isset($_GET['id'])) {
 //    echo "no mail with id";
     exit();
