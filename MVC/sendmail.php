@@ -1,7 +1,9 @@
 <?php
 //echo "AAAAAAAAAAAAAAAA";
-require_once('config.php');
-require_once("Model.php");
+require_once(dirname(__FILE__) . '/config.php');
+require_once(dirname(__FILE__) . "/Model.php");
+require_once(dirname(__FILE__) . "/libs/TnkMail.php");
+require_once(dirname(__FILE__) . '/libs/aaa.php');
 
 //echo "BBBBBBBBBBBBBBBBB";
 /*if(isset($_POST['reply'])){
@@ -24,8 +26,6 @@ if (! $mailArr) {
     exit();
 }
 
-require_once("libs/TnkMail.php");
-require_once('libs/aaa.php');
 //echo "DDDDDDDDDDDBBBBBB";
 //var_dump($mailArr);
 
