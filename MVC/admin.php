@@ -35,5 +35,3 @@ if(isset($_POST['reply']))
 $dbconnect->closeConnection() ;
 require("./views/admin.html.php");
 
-
-?>
