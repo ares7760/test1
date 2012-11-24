@@ -106,10 +106,9 @@ class Model{
 
             $lastmailID = $this->conn->lastInsertId();
 //	    echo $lastmailID;
-	    $count = count($cityArr);
 //            var_dump($lastmailID);
 //            var_dump($this->conn);
-            if ($count != 0)
+            if (count($cityArr) != 0)
             {
                 $this->saveMailCity($lastmailID, $cityArr);
             }
