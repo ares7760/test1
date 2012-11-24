@@ -1,7 +1,7 @@
 <?php
 function sendmail($from, $to, $subject, $message ){
         echo "aaaa";
-        $tmail = new TnkMail('utf-8');
+        $tmail = new TnkMail(BASE_ENCODING);
         $tmail->to = $to;
         $tmail->sender = $from;
         $tmail->subject = $subject;

@@ -44,7 +44,7 @@ if(isset($_POST['submit'])){
         $to = $val['cust_add'];
 
     $message = $_POST['reply_content'];
-    sendmail("ares7760@yahoo.com",$to,"Reply mail",$message);
+    sendmail(MAIL_SENDER, $to, "Reply mail", $message);
   }
 
 
