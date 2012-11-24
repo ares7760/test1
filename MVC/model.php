@@ -108,17 +108,8 @@ class Model{
 //            var_dump($this->conn);
             if ($count != 0)
             {
-                foreach($cityArr as $city)
+                foreach($cityArr as $cityId)
                 {
-                    $sql = "select city_id from cities where city_id='$city'";
-                    $statement= $this->conn->query($sql);
-                    $statement->execute();
-                    $statement->setFetchMode(PDO::FETCH_ASSOC);
-                    while($row = $statement->fetch())
-                    {
-                        $cityId = $row['city_id'];
-//                        echo $t;
-                    }
                     $this->saveMailCity($lastmailID, $cityId);
                 }
             }
