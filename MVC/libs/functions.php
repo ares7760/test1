@@ -16,5 +16,5 @@ function page_not_found() {
 }
 
 function is_post() {
-  return isset($_POST);
+    return isset($_POST);
 }
