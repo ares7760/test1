@@ -24,14 +24,10 @@ class Model{
         return $result;
     }
 
-    function fetch($sql) {
-          $data = ARRAY();
-          $result = $this->query($sql);
- 
-          WHILE($row = MYSQL_FETCH_ASSOC($result)) {
-               $data[] = $row;
-          }
-               RETURN $data;
+    function fetch($sql, $params) {
+        $sth = $this->conn->prepare($sql);
+        $sth->execute($params);
+        return $sth->fetchAll();
     }
 
     function getAllMail()
