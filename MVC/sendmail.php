@@ -1,21 +1,15 @@
 <?php
 require_once(dirname(__FILE__) . '/config.php');
 require_once(dirname(__FILE__) . "/Model.php");
-require_once(dirname(__FILE__) . "/libs/TnkMail.php");
-require_once(dirname(__FILE__) . '/libs/functions.php');
+require_once(LIBS_DIR . "TnkMail.php");
+require_once(LIBS_DIR . 'functions.php');
 
-if (! isset($_GET['id'])) {
-//    echo "no mail with id";
-    exit();
-}
+if (! isset($_GET['id'])) page_not_found();
 
 $dbconnect = new Model(DB_HOST, DB_NAME, DB_USER, DB_PASS);
 $mailArr = $dbconnect->getMailById($_GET['id']);
 
-if (! $mailArr) {
-    echo "no mail with id";
-    exit();
-}
+if (! $mailArr) page_not_found();
 
 if(isset($_POST['submit'])){
     $mail = $dbconnect->getMailById($_GET['id']);
@@ -27,5 +21,5 @@ if(isset($_POST['submit'])){
   }
 
 
-require("./views/sendmail.html.php");
+require(TEMPLATE_DIR . "sendmail.html.php");
 

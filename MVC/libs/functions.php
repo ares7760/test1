@@ -8,3 +8,9 @@ function sendmail($from, $to, $subject, $message ){
         $tmail->message = $message;
         $tmail->send();
 }
+
+function page_not_found() {
+    header("Status: 404 Not Found");
+    require_once(TEMPLATE_DIR . '404.html.php');
+    exit();
+}
