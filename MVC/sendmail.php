@@ -7,14 +7,12 @@ require_once(LIBS_DIR . 'functions.php');
 if (! isset($_GET['id'])) page_not_found();
 
 $dbconnect = new Model(DB_HOST, DB_NAME, DB_USER, DB_PASS);
-$mailArr = $dbconnect->getMailById($_GET['id']);
+$mail = $dbconnect->getMailById($_GET['id']);
 
-if (! $mailArr) page_not_found();
+if (! $mail) page_not_found();
 
 if (is_post()) {
-    foreach($mailArr as $m=>$val) {
-        $to = $val['cust_add'];
-    }
+    $to = $mail['cust_add'];
     $message = $_POST['reply_content'];
     sendmail(MAIL_SENDER, $to, "Reply mail", $message);
 }
