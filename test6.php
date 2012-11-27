@@ -8,7 +8,7 @@
   "Peter",
   "Lois",
   "Megan"
-  ),"cust_name"=> "qrt", "cust_add1"=>"ares7760@yahoo.com", "cust_add2"=>"ares7760@yahoo.com");
+  ),"cust_name"=> "qrt", "cust_add1"=>"xxxxx@yahoo.com", "cust_add2"=>"yyyyy@yahoo.com");
 
  foreach ($post as $field => $value){
         $temp = is_array($value) ? $value : trim($value);

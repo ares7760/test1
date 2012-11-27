@@ -14,4 +14,4 @@ define(DB_PASS, 'root');
 define(BASE_ENCODING, 'utf-8');
 
 # mail settings
-define(MAIL_SENDER, 'ares7760@yahoo.com');
+define(MAIL_SENDER, 'xxxxx@yahoo.com');
