@@ -16,7 +16,7 @@
     echo "<tr><th><label>内容</label></th><td><label>". preg_replace("/\n/", "<br />", $_POST['comment'])."</label></td></tr>";
     echo "</table>";
 
-    $email_to = "ares7760@yahoo.com";
+    $email_to = "xxxxx@yahoo.com";
     $email_subject = "test";
 
     $name = $_POST['cust_name']; // required

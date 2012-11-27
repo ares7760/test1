@@ -36,8 +36,8 @@ class TnkMail {
         $params['port'] = 465;
         $params['auth'] = true;
         $params['debug'] = false;
-        $params['username'] = 'auto@tnkjapan.com';
-        $params['password'] = '216detham';
+        $params['username'] = 'username';
+        $params['password'] = 'password';
 
         $headers = array ();
         $headers['To'] = $this->to;

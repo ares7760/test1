@@ -10,7 +10,7 @@ class Model{
         try
         {
             $this->conn =new PDO("mysql:host=$hostdb; dbname=$dbname", $username, $password);
-//            if ($this->debug) echo "successful connection";
+            if ($this->debug) echo "successful connection";
         }
         catch(PDOException $e) 
         {
@@ -24,14 +24,10 @@ class Model{
         return $result;
     }
 
-    function fetch($sql) {
-          $data = ARRAY();
-          $result = $this->query($sql);
- 
-          WHILE($row = MYSQL_FETCH_ASSOC($result)) {
-               $data[] = $row;
-          }
-               RETURN $data;
+    function fetch($sql, $params) {
+        $sth = $this->conn->prepare($sql);
+        $sth->execute($params);
+        return $sth->fetchAll();
     }
 
     function getAllMail()
@@ -47,21 +43,14 @@ class Model{
 
     function getMailById($mailId)
     {
-        $sql = "select mail_id,cust_name,cust_add,comment,send_date from mails where mail_id = ".$mailId;
-        $result = $this->query($sql);
-        $mailArr = array();
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        array_push($mailArr, $row);
-        }
-        return $mailArr;
+        $sql = "select mail_id,cust_name,cust_add,comment,send_date from mails where mail_id = :mailId";
+        $result = $this->fetch($sql, array(':mailId' => $mailId));
+        return $result[0];
     }
 
     function getCity($cityId)
     {
         $sql = "select * from cities where city_id = $cityId";
-//        echo $sql;
-//        var_dump($dbconnect);
-//        var_dump($result);
         $result = $thist->query($sql);
         foreach($result as $row)
             return $row['cityID'];
@@ -79,7 +68,6 @@ class Model{
 
     function getMailByCity($city){
         $city_str = implode(',', $city);
-//        echo $city_str;
         $sql = "select distinct mails.mail_id,mails.cust_name,mails.cust_add, mails.comment, mails.send_date from mails left join mail_city on mails.mail_id = mail_city.mail_id where mail_city.city_id in (".$city_str.")";
         echo $sql;
         $result = $this->query($sql);
@@ -88,7 +76,16 @@ class Model{
         array_push($mailArr, $row);
         }
         return $mailArr;
-//        var_dump($mailArr);
+    }
+
+    private function saveMailCity($mailId, $cityIds) {
+        $sql = "insert into mail_city(mail_id,city_id) values(:mailId, :cityId)";
+        $sqlprep = $this->conn->prepare($sql);
+        foreach ($cityIds as $cityId) {
+            if (! $this->getCity($cityId)) continue;
+            $ar_val = array('mailId' => $mailId, 'cityId' => $cityId);
+            $sqlprep->execute($ar_val);
+        }
     }
 
     function saveData($custName,$custAdd,$comment,$cityArr,$date){
@@ -97,35 +94,14 @@ class Model{
             $this->conn->beginTransaction();
 
             $sql = "insert into mails(cust_name,cust_add,comment,send_date) values(:cust_name,:cust_add,:comment,:send_date)";
- //           echo $sql;
             $sqlprep = $this->conn->prepare($sql);
             $ar_val = array('cust_name'=>$custName, 'cust_add'=>$custAdd,'comment'=>$comment,'send_date'=>$date);
             $sqlprep->execute($ar_val);
 
             $lastmailID = $this->conn->lastInsertId();
-//	    echo $lastmailID;
-	    $count = count($cityArr);
-//            var_dump($lastmailID);
-//            var_dump($this->conn);
-            if ($count != 0)
+            if (count($cityArr) != 0)
             {
-                foreach($cityArr as $c)
-                {
-                    $sql = "select city_id from cities where city_id='$c'";
-                    $statement= $this->conn->query($sql);
-                    $statement->execute();
-                    $statement->setFetchMode(PDO::FETCH_ASSOC);
-                    while($row = $statement->fetch())
-                    {
-                        $t = $row['city_id'];
-//                        echo $t;
-                    }
-                    $sql = "insert into mail_city(mail_id,city_id) values(:lastmailid,:t)";
-                    $sqlprep = $this->conn->prepare($sql);
-                    $ar_val = array('lastmailid'=>$lastmailID,'t'=>$t);
-                    $sqlprep->execute($ar_val );
-             
-                }
+                $this->saveMailCity($lastmailID, $cityArr);
             }
             $this->conn->commit();
         } catch (Exception $e)
@@ -141,6 +117,4 @@ class Model{
         $this->conn = null;
     }
 }
-
-?>
 
