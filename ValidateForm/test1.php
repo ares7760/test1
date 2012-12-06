@@ -1,5 +1,5 @@
 <?php
-
+//var_dump($_POST);
 if(isset($_POST['submitted'])&&($_POST['submitted']==1)){
     $expected = array("cust_name","cust_add1","cust_add2","city","comment");
     $required = array("cust_name","cust_add1","cust_add2","city","comment");
@@ -36,6 +36,7 @@ if(isset($_POST['submitted'])&&($_POST['submitted']==1)){
      $checkedarr = array();
      $count = count($_POST['city']);
      for ($i = 0; $i < $count; $i++) {
+//      echo $_POST['city'][$i];
         array_push($checkedarr, $_POST['city'][$i]);
     }
 

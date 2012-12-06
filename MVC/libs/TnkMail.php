@@ -1,6 +1,5 @@
 <?php
 require_once('Mail.php');
-//var_dump(ini_get('error_reporting'));
 
 class TnkMail {
 
@@ -19,16 +18,11 @@ class TnkMail {
 
     function send() {
         echo "----------------";
-        var_dump($this->subject);
-        var_dump($this->message);
         $subject = mb_convert_kana($this->subject, "K", $this->base_encoding);
-    	$subject = mb_encode_mimeheader(mb_convert_encoding($subject, $this->mail_encoding, $this->base_encoding), $this->mail_encoding);
+        $subject = mb_encode_mimeheader(mb_convert_encoding($subject, $this->mail_encoding, $this->base_encoding), $this->mail_encoding);
         $message = mb_convert_kana($this->message, "K", $this->base_encoding);
-      	$body = mb_convert_encoding($message, $this->mail_encoding, $this->base_encoding);
+        $body = mb_convert_encoding($message, $this->mail_encoding, $this->base_encoding);
         $message  = "$body\r\n";
-        var_dump($this->base_encoding);
-        var_dump($subject);
-        var_dump($message);
 
         // FIXED PARAMS FOR GOOGLE APPS
         $params = array();
@@ -49,11 +43,7 @@ class TnkMail {
         $headers['Content-Type'] = "text/plain; charset=\"ISO-2022-JP\"";
         $smtp = Mail::factory('smtp', $params);
         try {
-            var_dump($smtp);
-            var_dump($this->to);
-            var_dump($headers);
-            var_dump($message);
-        $result = $smtp->send($this->to, $headers, $message);
+            $result = $smtp->send($this->to, $headers, $message);
         if ($result) {
             echo 'OK';
         } else {
@@ -61,10 +51,7 @@ class TnkMail {
         }
         }catch(Exception $e)
         {
-//        echo"senda";
             echo $e->getMessage();
         }
-//        echo"send";
     }
 }
-//echo "DONE LOAD";

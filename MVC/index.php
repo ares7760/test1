@@ -1,29 +1,16 @@
 <?php
 
-require_once("Model.php");
+require_once(dirname(_FILE_).'/config.php');
+require_once(dirname(_FILE_).'/Model.php');
+require_once(LIBS_DIR . '/TnkMail.php');
+require_once(LIBS_DIR . '/functions.php');
+//require('test.shtml');
 
+$dbconnect = new Model(DB_HOST,DB_NAME,DB_USER,DB_PASS);
 
-$dbconnect = new Model('localhost','mailform','root', 'root');
 $cityArr = $dbconnect->getAllCity();
 
 $checkedarr = array();
-
-function createCityChecks($cities, $checkedarr) {
-    $html = array();
-    $i = 0;
-    foreach ($cities as $key => $val) {
-        $i++;
-        $rtn = ($i == 5) ? "<br />" : "";
-        if ($key !== null)
-            $html[] = "<input id='city_{$val['city_id']}' name='city[{$val['city_id']}]' type='checkbox' val='{$val['city_id']}'";
-        if (in_array($val['city_id'], $checkedarr)) {
-           $html[] =" checked ";
-        }
-            $html[] ="/><label for='city_{$val['city_id']}'>{$val['city_name']}</label>{$rtn}";
-    }
-    return implode("\n", $html);
-}
-
 
 if(isset($_POST['submit'])){
     $required = array("cust_name","cust_add1","cust_add2","city","comment");
@@ -52,7 +39,7 @@ if(isset($_POST['submit'])){
     {
         array_push($errors, "error_mail");
     }
-    
+
     if (isset($_POST['city'])) {
          foreach ($_POST['city'] as $key => $val) {
              $checkedarr[] = $key;
@@ -63,12 +50,18 @@ if(isset($_POST['submit'])){
 
 
     if (empty($errors)){
-        require_once("done.php");
+        $name = $_POST['cust_name'];
+        $add = $_POST['cust_add2'];
+        $comt = $_POST['comment'];
+        send_enq($name,$add,$comt);
+        send_conf($name,$add,$comt);
+        require_once(dirname(_FILE_).'/done.php');
+
         exit();
     }
 }
 
 $dbconnect->closeConnection();
-require("./views/index.html.php");
+require(TEMPLATE_DIR . '/index.html.php');
 
-?>
+

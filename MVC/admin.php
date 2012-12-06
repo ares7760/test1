@@ -1,28 +1,13 @@
 <?php
-require_once("Model.php");
+require_once(dirname(__FILE__) . "/config.php");
+require_once(dirname(__FILE__) . "/Model.php");
+require_once(LIBS_DIR . '/functions.php');
 
-$dbconnect = new Model('localhost','mailform','root', 'root');
+
+$dbconnect = new Model(DB_HOST,DB_NAME,DB_USER,DB_PASS);
 $cityArr = $dbconnect->getAllCity();
 
 $checkedarr = array();
-
-function createCityChecks($cities, $checkedarr) {
-    $html = array();
-    $i = 0;
-    foreach ($cities as $key => $val) {
-        $i++;
-        $rtn = ($i == 5) ? "<br />" : "";
-        if ($key !== null)
-            $html[] = "<input id='city_{$val['city_id']}' name='city[{$val['city_id']}]' type='checkbox' val='{$val['city_id']}'";
-        if (in_array($val['city_id'], $checkedarr)) {
-           $html[] =" checked ";
-        }
-            $html[] ="/><label for='city_{$val['city_id']}'>{$val['city_name']}</label>{$rtn}";
-    }
-    return implode("\n", $html);
-}
-
-
 
 $mailArr = $dbconnect->getAllMail();
 
@@ -36,7 +21,7 @@ if(isset($_POST['filter']))
     }
     $mailArr = $dbconnect->getMailByCity($checkedarr);
 }
-//var_dump($mailArr);
+
 if(isset($_POST['reply']))
 {
     require_once("sendmail.php");
@@ -46,7 +31,8 @@ if(isset($_POST['reply']))
 
 
 $dbconnect->closeConnection() ;
-require("./views/admin.html.php");
+require(TEMPLATE_DIR . "/admin.html.php");
 
 
-?>
+
+ 
